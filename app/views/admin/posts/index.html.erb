@@ -1,0 +1,15 @@
+<section class="section-heading">
+  <h1>管理画面</h1>
+</section>
+
+<div class="admin-list">
+  <% @posts.each do |post| %>
+    <article class="admin-row">
+      <div>
+        <h2><%= link_to post.title, admin_post_path(post) %></h2>
+        <p><%= post.area %> / <%= post.user.name %></p>
+      </div>
+      <span class="status"><%= post.status %></span>
+    </article>
+  <% end %>
+</div>

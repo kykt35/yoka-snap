@@ -1,0 +1,10 @@
+<% liked = current_user&.reactions&.exists?(post: post, reaction_type: "like") %>
+<% if current_user %>
+  <% if liked %>
+    <%= button_to "いいね済み #{post.likes_count}", post_reaction_path(post, reaction_type: :like), method: :delete, class: "secondary-button" %>
+  <% else %>
+    <%= button_to "いいね #{post.likes_count}", post_reactions_path(post, reaction_type: :like), method: :post, class: "primary-button" %>
+  <% end %>
+<% else %>
+  <%= link_to "いいね #{post.likes_count}", new_session_path, class: "secondary-button" %>
+<% end %>

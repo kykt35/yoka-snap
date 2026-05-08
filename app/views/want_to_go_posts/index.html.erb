@@ -1,0 +1,11 @@
+<section class="section-heading">
+  <h1>行きたい一覧</h1>
+</section>
+
+<div class="post-grid">
+  <%= render partial: "posts/post_card", collection: @posts, as: :post %>
+</div>
+
+<% if @posts.empty? %>
+  <p class="empty">保存したスポットはまだありません。</p>
+<% end %>

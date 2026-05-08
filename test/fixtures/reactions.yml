@@ -1,0 +1,9 @@
+one_like:
+  user: one
+  post: published
+  reaction_type: like
+
+two_want_to_go:
+  user: two
+  post: published
+  reaction_type: want_to_go

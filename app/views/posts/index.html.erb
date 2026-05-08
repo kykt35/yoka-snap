@@ -1,0 +1,40 @@
+<section class="hero">
+  <p class="eyebrow">福岡で、写真撮るのによかとこ探そ。</p>
+  <h1>よかスナップ</h1>
+  <p>ちょうどよかところも、ばり映えるところも。福岡の「撮りたくなる場所」を探せるサービスです。</p>
+</section>
+
+<section class="filters" aria-label="投稿の絞り込み">
+  <div>
+    <h2>エリア</h2>
+    <div class="chip-list">
+      <%= link_to "すべて", posts_path(tag: params[:tag]), class: class_names("chip", active: params[:area].blank?) %>
+      <% @areas.each do |area| %>
+        <%= link_to area, posts_path(area: area, tag: params[:tag]), class: class_names("chip", active: params[:area] == area) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <h2>タグ</h2>
+    <div class="chip-list">
+      <%= link_to "すべて", posts_path(area: params[:area]), class: class_names("chip", active: params[:tag].blank?) %>
+      <% @tags.each do |tag| %>
+        <%= link_to "##{tag.name}", posts_path(area: params[:area], tag: tag.slug), class: class_names("chip", active: params[:tag] == tag.slug) %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="section-heading">
+  <h2>新着スポット</h2>
+  <%= link_to "投稿する", new_post_path, class: "primary-link" %>
+</section>
+
+<div class="post-grid">
+  <%= render partial: "post_card", collection: @posts, as: :post %>
+</div>
+
+<% if @posts.empty? %>
+  <p class="empty">条件に合う投稿はまだありません。</p>
+<% end %>

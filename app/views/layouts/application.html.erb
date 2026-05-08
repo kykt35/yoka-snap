@@ -20,9 +20,36 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <%= link_to "よかスナップ", root_path, class: "brand" %>
+      <nav class="site-nav" aria-label="主要ナビゲーション">
+        <%= link_to "投稿", new_post_path %>
+        <% if current_user %>
+          <%= link_to "マイページ", my_page_path %>
+          <%= link_to "行きたい", want_to_go_posts_path %>
+          <% if Current.admin? %>
+            <%= link_to "管理", admin_posts_path %>
+          <% end %>
+          <%= button_to "ログアウト", session_path, method: :delete, class: "link-button" %>
+        <% else %>
+          <%= link_to "ログイン", new_session_path %>
+        <% end %>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <% if notice.present? %>
+        <p class="flash notice"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="flash alert"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </main>
   </body>
 </html>

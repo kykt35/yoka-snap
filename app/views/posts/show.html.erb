@@ -1,0 +1,43 @@
+<article class="detail">
+  <% if @post.images.attached? %>
+    <%= image_tag @post.images.first.variant(:large), alt: @post.title, class: "detail-photo" %>
+  <% end %>
+
+  <div class="detail-body">
+    <p class="eyebrow"><%= @post.area %></p>
+    <h1><%= @post.title %></h1>
+    <% if @post.description.present? %>
+      <p class="lead"><%= @post.description %></p>
+    <% end %>
+
+    <dl class="meta-list">
+      <div>
+        <dt>住所または場所名</dt>
+        <dd><%= @post.address %></dd>
+      </div>
+      <div>
+        <dt>おすすめ時間帯</dt>
+        <dd><%= @post.recommended_time.presence || "指定なし" %></dd>
+      </div>
+      <div>
+        <dt>投稿者</dt>
+        <dd><%= @post.user.name %></dd>
+      </div>
+      <div>
+        <dt>投稿日</dt>
+        <dd><%= l @post.created_at.to_date %></dd>
+      </div>
+    </dl>
+
+    <div class="tag-row">
+      <% @post.tags.each do |tag| %>
+        <%= link_to "##{tag.name}", posts_path(tag: tag.slug), class: "tag" %>
+      <% end %>
+    </div>
+
+    <div class="action-row">
+      <%= render "like_button", post: @post %>
+      <%= render "want_to_go_button", post: @post %>
+    </div>
+  </div>
+</article>

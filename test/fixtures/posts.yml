@@ -1,0 +1,17 @@
+published:
+  user: one
+  title: 糸島の海
+  description: 夕方の海がきれいです
+  area: 糸島
+  address: 糸島
+  recommended_time: 夕方
+  status: published
+
+hidden:
+  user: one
+  title: 非公開スポット
+  description: 非公開です
+  area: 博多
+  address: 博多駅
+  recommended_time: 夜
+  status: hidden

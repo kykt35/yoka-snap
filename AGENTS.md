@@ -117,6 +117,20 @@ PRD のデータ設計を基本にする。
 - 管理者以外が管理画面へアクセスできないことを確認する。
 - 画面実装では、主要導線がスマートフォン幅で使えることを確認する。
 
+## Branch Rules
+
+- ブランチ名は `<type>/<short-description>` を基本にする。
+- `<short-description>` は英小文字、数字、ハイフンを使い、内容が分かる短い名前にする。
+- 主な `<type>`:
+  - `feat/`: 新機能追加
+  - `fix/`: 不具合修正
+  - `hotfix/`: 緊急修正
+  - `chore/`: 依存関係更新、設定変更、雑務
+  - `docs/`: ドキュメントのみの変更
+  - `test/`: テスト追加、テスト修正
+  - `refactor/`: 振る舞いを変えない整理、設計改善
+- 例: `feat/post-upload`, `fix/hidden-post-filter`, `hotfix/admin-access`, `chore/update-rails-config`
+
 ## Working Rules
 
 - 既存のドキュメント、UI モック、生成スクリプトを不要に書き換えない。

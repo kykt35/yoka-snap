@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --color-yoka-bg: #fbf7ed;
+  --color-yoka-surface: #ffffff;
+  --color-yoka-ink: #1e2a24;
+  --color-yoka-muted: #66746c;
+  --color-yoka-line: #dfd9cc;
+  --color-yoka-green: #2f6b4f;
+  --color-yoka-green-dark: #24513c;
+  --color-yoka-accent: #ba5e4a;
+}

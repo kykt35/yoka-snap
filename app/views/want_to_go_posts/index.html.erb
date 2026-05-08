@@ -1,11 +1,11 @@
-<section class="section-heading">
-  <h1>行きたい一覧</h1>
+<section class="mb-3.5 mt-7 flex items-center justify-between gap-3">
+  <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark">行きたい一覧</h1>
 </section>
 
-<div class="post-grid">
+<div class="grid grid-cols-1 gap-[18px] sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
   <%= render partial: "posts/post_card", collection: @posts, as: :post %>
 </div>
 
 <% if @posts.empty? %>
-  <p class="empty">保存したスポットはまだありません。</p>
+  <p class="text-yoka-muted">保存したスポットはまだありません。</p>
 <% end %>

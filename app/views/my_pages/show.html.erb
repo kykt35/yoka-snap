@@ -1,25 +1,25 @@
-<section class="profile">
+<section class="flex items-center gap-4">
   <% if current_user.avatar.attached? %>
-    <%= image_tag current_user.avatar.variant(:avatar), alt: current_user.name, class: "avatar" %>
+    <%= image_tag current_user.avatar.variant(:avatar), alt: current_user.name, class: "size-[76px] rounded-full object-cover" %>
   <% end %>
   <div>
-    <p class="eyebrow">マイページ</p>
-    <h1><%= current_user.name %></h1>
+    <p class="mb-2 font-extrabold text-yoka-accent">マイページ</p>
+    <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark"><%= current_user.name %></h1>
   </div>
 </section>
 
-<section class="section-heading">
-  <h2>自分の投稿</h2>
-  <%= link_to "投稿する", new_post_path, class: "primary-link" %>
+<section class="mb-3.5 mt-7 flex items-center justify-between gap-3">
+  <h2 class="font-bold">自分の投稿</h2>
+  <%= link_to "投稿する", new_post_path, class: "font-extrabold text-yoka-accent" %>
 </section>
-<div class="post-grid">
+<div class="grid grid-cols-1 gap-[18px] sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
   <%= render partial: "posts/post_card", collection: @posts, as: :post %>
 </div>
 
-<section class="section-heading">
-  <h2>行きたい</h2>
-  <%= link_to "一覧を見る", want_to_go_posts_path, class: "primary-link" %>
+<section class="mb-3.5 mt-7 flex items-center justify-between gap-3">
+  <h2 class="font-bold">行きたい</h2>
+  <%= link_to "一覧を見る", want_to_go_posts_path, class: "font-extrabold text-yoka-accent" %>
 </section>
-<div class="post-grid">
+<div class="grid grid-cols-1 gap-[18px] sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
   <%= render partial: "posts/post_card", collection: @want_to_go_posts, as: :post %>
 </div>

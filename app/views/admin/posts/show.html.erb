@@ -1,27 +1,27 @@
-<article class="detail">
+<article class="overflow-hidden rounded-lg bg-yoka-surface">
   <% if @post.images.attached? %>
-    <%= image_tag @post.images.first.variant(:large), alt: @post.title, class: "detail-photo" %>
+    <%= image_tag @post.images.first.variant(:large), alt: @post.title, class: "aspect-[4/3] w-full bg-[#e5dfd2] object-cover" %>
   <% end %>
-  <div class="detail-body">
-    <p class="eyebrow">管理画面</p>
-    <h1><%= @post.title %></h1>
-    <p class="warning">撮影禁止場所、私有地、人物写り込み、迷惑行為につながる内容がないか確認してください。</p>
-    <dl class="meta-list">
-      <div>
-        <dt>ステータス</dt>
+  <div class="p-[18px]">
+    <p class="mb-2 font-extrabold text-yoka-accent">管理画面</p>
+    <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark"><%= @post.title %></h1>
+    <p class="mt-5 rounded-lg bg-[#fff0ec] px-3.5 py-3 text-[#7c2f20]">撮影禁止場所、私有地、人物写り込み、迷惑行為につながる内容がないか確認してください。</p>
+    <dl class="my-5 grid gap-2.5 text-sm text-yoka-muted">
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">ステータス</dt>
         <dd><%= @post.status %></dd>
       </div>
-      <div>
-        <dt>投稿者</dt>
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">投稿者</dt>
         <dd><%= @post.user.name %></dd>
       </div>
-      <div>
-        <dt>場所</dt>
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">場所</dt>
         <dd><%= @post.area %> / <%= @post.address %></dd>
       </div>
     </dl>
     <p><%= @post.description %></p>
-    <div class="action-row">
+    <div class="mt-5 flex flex-wrap items-center gap-2">
       <%= button_to "公開する", publish_admin_post_path(@post), method: :patch, class: "primary-button" %>
       <%= button_to "非公開にする", hide_admin_post_path(@post), method: :patch, class: "secondary-button danger" %>
     </div>

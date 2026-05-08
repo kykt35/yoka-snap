@@ -1,0 +1,40 @@
+<%= form_with model: post, class: "stack-form" do |form| %>
+  <% if post.errors.any? %>
+    <div class="form-errors">
+      <p>入力内容を確認してください。</p>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :images, "写真" %>
+  <%= form.file_field :images, multiple: true, accept: "image/png,image/jpeg,image/webp" %>
+
+  <%= form.label :title, "スポット名" %>
+  <%= form.text_field :title, required: true %>
+
+  <%= form.label :address, "住所または場所名" %>
+  <%= form.text_field :address, required: true %>
+
+  <%= form.label :area, "エリア" %>
+  <%= form.select :area, Post::AREAS, { prompt: "選択してください" }, required: true %>
+
+  <%= form.label :description, "ひとこと" %>
+  <%= form.text_area :description, rows: 4 %>
+
+  <%= form.label :tag_ids, "タグ" %>
+  <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name do |tag| %>
+    <label class="checkbox-chip">
+      <%= tag.check_box %>
+      <span><%= tag.text %></span>
+    </label>
+  <% end %>
+
+  <%= form.label :recommended_time, "おすすめ時間帯" %>
+  <%= form.select :recommended_time, Post::RECOMMENDED_TIMES, { include_blank: "指定なし" } %>
+
+  <%= form.submit "投稿する", class: "primary-button" %>
+<% end %>

@@ -1,0 +1,7 @@
+published_sea:
+  post: published
+  tag: sea
+
+hidden_cafe:
+  post: hidden
+  tag: cafe

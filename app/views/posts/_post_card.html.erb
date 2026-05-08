@@ -1,0 +1,25 @@
+<article class="post-card">
+  <%= link_to post_path(post), class: "photo-link" do %>
+    <% if post.images.attached? %>
+      <%= image_tag post.images.first.variant(:thumb), alt: post.title, class: "post-photo" %>
+    <% end %>
+  <% end %>
+  <div class="post-card-body">
+    <div class="post-card-title">
+      <h3><%= link_to post.title, post_path(post) %></h3>
+      <span><%= post.area %></span>
+    </div>
+    <% if post.description.present? %>
+      <p><%= truncate(post.description, length: 64) %></p>
+    <% end %>
+    <div class="tag-row">
+      <% post.tags.each do |tag| %>
+        <%= link_to "##{tag.name}", posts_path(tag: tag.slug), class: "tag" %>
+      <% end %>
+    </div>
+    <div class="reaction-row">
+      <span>いいね <%= post.likes_count %></span>
+      <span>行きたい <%= post.want_to_go_count %></span>
+    </div>
+  </div>
+</article>

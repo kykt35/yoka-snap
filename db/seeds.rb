@@ -33,12 +33,13 @@ tags.each do |name|
 end
 
 user = User.find_or_initialize_by(email_address: "user@example.com")
-user.assign_attributes(name: "よかユーザー", password: "password", role: "user")
+user.assign_attributes(name: "よかユーザー", password: "password")
 user.save!
 
 admin = User.find_or_initialize_by(email_address: "admin@example.com")
-admin.assign_attributes(name: "管理者", password: "password", role: "admin")
+admin.assign_attributes(name: "管理者", password: "password")
 admin.save!
+admin.create_admin_role! unless admin.admin_role
 
 avatar_path = Rails.root.join("public/icon.png")
 [ user, admin ].each do |account|

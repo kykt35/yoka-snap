@@ -1,15 +1,15 @@
-<section class="section-heading">
-  <h1>管理画面</h1>
+<section class="mb-3.5 mt-7 flex items-center justify-between gap-3">
+  <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark">管理画面</h1>
 </section>
 
-<div class="admin-list">
+<div class="grid gap-3">
   <% @posts.each do |post| %>
-    <article class="admin-row">
+    <article class="flex items-center justify-between gap-3 overflow-hidden rounded-lg border border-yoka-line bg-yoka-surface p-3.5">
       <div>
-        <h2><%= link_to post.title, admin_post_path(post) %></h2>
-        <p><%= post.area %> / <%= post.user.name %></p>
+        <h2 class="font-bold"><%= link_to post.title, admin_post_path(post) %></h2>
+        <p class="text-yoka-muted"><%= post.area %> / <%= post.user.name %></p>
       </div>
-      <span class="status"><%= post.status %></span>
+      <span class="inline-flex min-h-[34px] items-center rounded-full border border-yoka-line bg-yoka-surface px-3 py-1.5 text-sm font-bold text-yoka-green-dark"><%= post.status %></span>
     </article>
   <% end %>
 </div>

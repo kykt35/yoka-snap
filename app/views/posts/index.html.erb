@@ -1,40 +1,43 @@
-<section class="hero">
-  <p class="eyebrow">福岡で、写真撮るのによかとこ探そ。</p>
-  <h1>よかスナップ</h1>
-  <p>ちょうどよかところも、ばり映えるところも。福岡の「撮りたくなる場所」を探せるサービスです。</p>
+<% chip_class = "inline-flex min-h-[34px] items-center rounded-full border border-yoka-line bg-yoka-surface px-3 py-1.5 text-sm font-bold text-yoka-green-dark" %>
+<% active_chip_class = "border-yoka-green bg-yoka-green text-white" %>
+
+<section class="py-7 pb-5">
+  <p class="mb-2 font-extrabold text-yoka-accent">福岡で、写真撮るのによかとこ探そ。</p>
+  <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark">よかスナップ</h1>
+  <p class="mt-3 max-w-[680px] text-yoka-muted">ちょうどよかところも、ばり映えるところも。福岡の「撮りたくなる場所」を探せるサービスです。</p>
 </section>
 
-<section class="filters" aria-label="投稿の絞り込み">
+<section class="my-3 mb-7 grid gap-[18px] border-y border-yoka-line py-[18px]" aria-label="投稿の絞り込み">
   <div>
-    <h2>エリア</h2>
-    <div class="chip-list">
-      <%= link_to "すべて", posts_path(tag: params[:tag]), class: class_names("chip", active: params[:area].blank?) %>
+    <h2 class="font-bold">エリア</h2>
+    <div class="mt-2 flex flex-wrap items-center gap-2">
+      <%= link_to "すべて", posts_path(tag: params[:tag]), class: class_names(chip_class, active_chip_class => params[:area].blank?) %>
       <% @areas.each do |area| %>
-        <%= link_to area, posts_path(area: area, tag: params[:tag]), class: class_names("chip", active: params[:area] == area) %>
+        <%= link_to area, posts_path(area: area, tag: params[:tag]), class: class_names(chip_class, active_chip_class => params[:area] == area) %>
       <% end %>
     </div>
   </div>
 
   <div>
-    <h2>タグ</h2>
-    <div class="chip-list">
-      <%= link_to "すべて", posts_path(area: params[:area]), class: class_names("chip", active: params[:tag].blank?) %>
+    <h2 class="font-bold">タグ</h2>
+    <div class="mt-2 flex flex-wrap items-center gap-2">
+      <%= link_to "すべて", posts_path(area: params[:area]), class: class_names(chip_class, active_chip_class => params[:tag].blank?) %>
       <% @tags.each do |tag| %>
-        <%= link_to "##{tag.name}", posts_path(area: params[:area], tag: tag.slug), class: class_names("chip", active: params[:tag] == tag.slug) %>
+        <%= link_to "##{tag.name}", posts_path(area: params[:area], tag: tag.slug), class: class_names(chip_class, active_chip_class => params[:tag] == tag.slug) %>
       <% end %>
     </div>
   </div>
 </section>
 
-<section class="section-heading">
-  <h2>新着スポット</h2>
-  <%= link_to "投稿する", new_post_path, class: "primary-link" %>
+<section class="mb-3.5 mt-7 flex items-center justify-between gap-3">
+  <h2 class="font-bold">新着スポット</h2>
+  <%= link_to "投稿する", new_post_path, class: "font-extrabold text-yoka-accent" %>
 </section>
 
-<div class="post-grid">
+<div class="grid grid-cols-1 gap-[18px] sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))]">
   <%= render partial: "post_card", collection: @posts, as: :post %>
 </div>
 
 <% if @posts.empty? %>
-  <p class="empty">条件に合う投稿はまだありません。</p>
+  <p class="text-yoka-muted">条件に合う投稿はまだありません。</p>
 <% end %>

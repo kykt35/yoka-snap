@@ -43,6 +43,17 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_session_path
   end
 
+  test "logged in user renders new post form" do
+    sign_in_as users(:one)
+
+    get new_post_path
+
+    assert_response :success
+    assert_select "form"
+    assert_select "input[type=file][name='post[images][]']"
+    assert_select "input[type=submit][value='投稿する']"
+  end
+
   test "logged in user creates published post with an image" do
     sign_in_as users(:one)
 

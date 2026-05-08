@@ -1,23 +1,23 @@
-<article class="post-card">
+<article class="overflow-hidden rounded-lg border border-yoka-line bg-yoka-surface">
   <%= link_to post_path(post), class: "photo-link" do %>
     <% if post.images.attached? %>
-      <%= image_tag post.images.first.variant(:thumb), alt: post.title, class: "post-photo" %>
+      <%= image_tag post.images.first.variant(:thumb), alt: post.title, class: "aspect-[4/3] w-full bg-[#e5dfd2] object-cover" %>
     <% end %>
   <% end %>
-  <div class="post-card-body">
-    <div class="post-card-title">
-      <h3><%= link_to post.title, post_path(post) %></h3>
-      <span><%= post.area %></span>
+  <div class="p-[18px]">
+    <div class="flex items-start justify-between gap-2.5">
+      <h3 class="font-bold"><%= link_to post.title, post_path(post) %></h3>
+      <span class="text-sm text-yoka-muted"><%= post.area %></span>
     </div>
     <% if post.description.present? %>
-      <p><%= truncate(post.description, length: 64) %></p>
+      <p class="mt-2"><%= truncate(post.description, length: 64) %></p>
     <% end %>
-    <div class="tag-row">
+    <div class="mt-3 flex flex-wrap items-center gap-2">
       <% post.tags.each do |tag| %>
-        <%= link_to "##{tag.name}", posts_path(tag: tag.slug), class: "tag" %>
+        <%= link_to "##{tag.name}", posts_path(tag: tag.slug), class: "inline-flex min-h-[34px] items-center rounded-full border border-yoka-line bg-yoka-surface px-3 py-1.5 text-sm font-bold text-yoka-green-dark" %>
       <% end %>
     </div>
-    <div class="reaction-row">
+    <div class="mt-3 flex flex-wrap items-center gap-2 text-sm text-yoka-muted">
       <span>いいね <%= post.likes_count %></span>
       <span>行きたい <%= post.want_to_go_count %></span>
     </div>

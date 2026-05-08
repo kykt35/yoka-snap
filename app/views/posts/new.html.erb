@@ -1,9 +1,9 @@
-<section class="form-panel">
-  <p class="eyebrow">新しいスポット</p>
-  <h1>福岡で見つけた「写真撮るのによかとこ」を投稿しよう。</h1>
-  <p>有名スポットじゃなくてもOK。海辺、路地、公園、カフェ前など、あなたが「ここよかね」と思った場所を教えてください。</p>
+<section class="overflow-hidden rounded-lg border border-yoka-line bg-yoka-surface p-[18px]">
+  <p class="mb-2 font-extrabold text-yoka-accent">新しいスポット</p>
+  <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark">福岡で見つけた「写真撮るのによかとこ」を投稿しよう。</h1>
+  <p class="mt-3">有名スポットじゃなくてもOK。海辺、路地、公園、カフェ前など、あなたが「ここよかね」と思った場所を教えてください。</p>
 
-  <p class="warning">撮影禁止の場所や私有地への立ち入りは投稿しないでください。人が写っている写真は、相手の許可を取ってから投稿しましょう。</p>
+  <p class="mt-5 rounded-lg bg-[#fff0ec] px-3.5 py-3 text-[#7c2f20]">撮影禁止の場所や私有地への立ち入りは投稿しないでください。人が写っている写真は、相手の許可を取ってから投稿しましょう。</p>
 
   <%= render "form", post: @post %>
 </section>

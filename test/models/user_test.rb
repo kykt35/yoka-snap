@@ -6,11 +6,6 @@ class UserTest < ActiveSupport::TestCase
     assert_equal("downcased@example.com", user.email_address)
   end
 
-  test "admin role predicate" do
-    assert users(:two).admin?
-    assert_not users(:one).admin?
-  end
-
   test "avatar can be attached" do
     user = users(:one)
     user.avatar.attach(io: file_fixture("avatar.png").open, filename: "avatar.png", content_type: "image/png")

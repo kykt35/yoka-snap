@@ -39,7 +39,7 @@ user.save!
 admin = User.find_or_initialize_by(email_address: "admin@example.com")
 admin.assign_attributes(name: "管理者", password: "password")
 admin.save!
-admin.create_admin_role! unless admin.admin_role
+AdminRole.find_or_create_by!(user: admin)
 
 avatar_path = Rails.root.join("public/icon.png")
 [ user, admin ].each do |account|

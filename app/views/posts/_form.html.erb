@@ -1,8 +1,10 @@
-<%= form_with model: post, class: "stack-form" do |form| %>
+<% field_class = "min-h-[42px] w-full rounded-lg border border-yoka-line px-2.5 py-2.5" %>
+
+<%= form_with model: post, class: "mt-5 grid gap-2.5" do |form| %>
   <% if post.errors.any? %>
-    <div class="form-errors">
-      <p>入力内容を確認してください。</p>
-      <ul>
+    <div class="rounded-lg bg-[#fff0ec] px-3.5 py-3 text-[#7c2f20]">
+      <p class="font-bold">入力内容を確認してください。</p>
+      <ul class="mt-2 list-disc pl-5">
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -10,31 +12,31 @@
     </div>
   <% end %>
 
-  <%= form.label :images, "写真" %>
-  <%= form.file_field :images, multiple: true, accept: "image/png,image/jpeg,image/webp" %>
+  <%= form.label :images, "写真", class: "font-extrabold" %>
+  <%= form.file_field :images, multiple: true, accept: "image/png,image/jpeg,image/webp", class: field_class %>
 
-  <%= form.label :title, "スポット名" %>
-  <%= form.text_field :title, required: true %>
+  <%= form.label :title, "スポット名", class: "font-extrabold" %>
+  <%= form.text_field :title, required: true, class: field_class %>
 
-  <%= form.label :address, "住所または場所名" %>
-  <%= form.text_field :address, required: true %>
+  <%= form.label :address, "住所または場所名", class: "font-extrabold" %>
+  <%= form.text_field :address, required: true, class: field_class %>
 
-  <%= form.label :area, "エリア" %>
-  <%= form.select :area, Post::AREAS, { prompt: "選択してください" }, required: true %>
+  <%= form.label :area, "エリア", class: "font-extrabold" %>
+  <%= form.select :area, Post::AREAS, { prompt: "選択してください" }, { required: true, class: field_class } %>
 
-  <%= form.label :description, "ひとこと" %>
-  <%= form.text_area :description, rows: 4 %>
+  <%= form.label :description, "ひとこと", class: "font-extrabold" %>
+  <%= form.text_area :description, rows: 4, class: field_class %>
 
-  <%= form.label :tag_ids, "タグ" %>
+  <%= form.label :tag_ids, "タグ", class: "font-extrabold" %>
   <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name do |tag| %>
-    <label class="checkbox-chip">
-      <%= tag.check_box %>
+    <label class="mb-2 mr-2 inline-flex items-center gap-1.5 rounded-full border border-yoka-line bg-white px-2.5 py-1.5">
+      <%= tag.check_box class: "size-auto min-h-0" %>
       <span><%= tag.text %></span>
     </label>
   <% end %>
 
-  <%= form.label :recommended_time, "おすすめ時間帯" %>
-  <%= form.select :recommended_time, Post::RECOMMENDED_TIMES, { include_blank: "指定なし" } %>
+  <%= form.label :recommended_time, "おすすめ時間帯", class: "font-extrabold" %>
+  <%= form.select :recommended_time, Post::RECOMMENDED_TIMES, { include_blank: "指定なし" }, { class: field_class } %>
 
   <%= form.submit "投稿する", class: "primary-button" %>
 <% end %>

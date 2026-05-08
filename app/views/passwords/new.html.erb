@@ -1,8 +1,11 @@
-<h1>Forgot your password?</h1>
+<section class="mx-auto max-w-md rounded-lg border border-yoka-line bg-yoka-surface p-[18px]">
+  <h1 class="text-[clamp(2rem,8vw,3rem)] font-extrabold leading-[1.08] text-yoka-green-dark">パスワード再設定</h1>
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+  <%= tag.div(flash[:alert], class: "mt-4 rounded-lg bg-[#fff0ec] px-3.5 py-3 text-[#7c2f20]") if flash[:alert] %>
 
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+  <%= form_with url: passwords_path, class: "mt-5 grid gap-2.5" do |form| %>
+    <%= form.label :email_address, "メールアドレス", class: "font-extrabold" %>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "mail@example.com", value: params[:email_address], class: "min-h-[42px] w-full rounded-lg border border-yoka-line px-2.5 py-2.5" %>
+    <%= form.submit "再設定メールを送る", class: "primary-button" %>
+  <% end %>
+</section>

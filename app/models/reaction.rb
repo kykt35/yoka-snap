@@ -8,5 +8,5 @@ class Reaction < ApplicationRecord
   scope :want_to_go, -> { where(reaction_type: "want_to_go") }
 
   validates :reaction_type, inclusion: { in: TYPES }
-  validates :reaction_type, uniqueness: { scope: [:user_id, :post_id] }
+  validates :reaction_type, uniqueness: { scope: [ :user_id, :post_id ] }
 end

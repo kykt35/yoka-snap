@@ -54,8 +54,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
           address: "天神",
           description: "歩いていて見つけた路地",
           recommended_time: "昼",
-          tag_ids: [tags(:cafe).id],
-          images: [fixture_file_upload("photo.png", "image/png")]
+          tag_ids: [ tags(:cafe).id ],
+          images: [ fixture_file_upload("photo.png", "image/png") ]
         }
       }
     end

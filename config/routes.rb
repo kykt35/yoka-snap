@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   root "posts#index"
 
-  resources :posts, only: [:index, :show, :new, :create] do
+  resources :posts, only: [ :index, :show, :new, :create ] do
     post "reactions/:reaction_type", to: "reactions#create", as: :reactions
     delete "reactions/:reaction_type", to: "reactions#destroy", as: :reaction
   end
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :want_to_go_posts, only: :index
 
   namespace :admin do
-    resources :posts, only: [:index, :show] do
+    resources :posts, only: [ :index, :show ] do
       patch :publish, on: :member
       patch :hide, on: :member
     end
@@ -26,5 +26,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
 end

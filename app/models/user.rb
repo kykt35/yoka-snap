@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :reactions, dependent: :destroy
   has_one_attached :avatar do |attachable|
-    attachable.variant :avatar, resize_to_fill: [160, 160]
+    attachable.variant :avatar, resize_to_fill: [ 160, 160 ]
   end
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }

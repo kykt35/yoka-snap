@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_many :reactions, dependent: :destroy
   has_many_attached :images do |attachable|
-    attachable.variant :thumb, resize_to_fill: [640, 420]
-    attachable.variant :large, resize_to_limit: [1200, 900]
+    attachable.variant :thumb, resize_to_fill: [ 640, 420 ]
+    attachable.variant :large, resize_to_limit: [ 1200, 900 ]
   end
 
   STATUSES = %w[draft published hidden rejected].freeze

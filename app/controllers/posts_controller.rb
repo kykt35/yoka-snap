@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  allow_unauthenticated_access only: [:index, :show]
+  allow_unauthenticated_access only: [ :index, :show ]
 
   def index
     @tags = Tag.order(:name)

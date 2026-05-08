@@ -41,7 +41,7 @@ admin.assign_attributes(name: "管理者", password: "password", role: "admin")
 admin.save!
 
 avatar_path = Rails.root.join("public/icon.png")
-[user, admin].each do |account|
+[ user, admin ].each do |account|
   next if account.avatar.attached?
 
   account.avatar.attach(io: File.open(avatar_path), filename: "avatar.png", content_type: "image/png")
@@ -55,7 +55,7 @@ sample_post.assign_attributes(
   recommended_time: "夕方",
   status: "published"
 )
-sample_post.tags = Tag.where(name: ["公園", "夕日", "ちょうどよか"])
+sample_post.tags = Tag.where(name: [ "公園", "夕日", "ちょうどよか" ])
 unless sample_post.images.attached?
   sample_post.images.attach(io: File.open(Rails.root.join("public/icon.png")), filename: "sample.png", content_type: "image/png")
 end

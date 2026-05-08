@@ -25,29 +25,30 @@
   </head>
 
   <body class="bg-yoka-bg text-yoka-ink antialiased">
-    <header class="site-header">
-      <%= link_to "よかスナップ", root_path, class: "brand" %>
-      <nav class="site-nav" aria-label="主要ナビゲーション">
-        <%= link_to "投稿", new_post_path %>
+    <header class="sticky top-0 z-10 flex flex-col items-start gap-3 border-b border-yoka-line bg-yoka-bg/95 px-4 py-3 backdrop-blur md:flex-row md:items-center md:justify-between md:px-8">
+      <% nav_link_class = "text-sm font-bold text-yoka-green-dark hover:text-yoka-accent" %>
+      <%= link_to "よかスナップ", root_path, class: "shrink-0 text-xl font-extrabold text-yoka-green-dark" %>
+      <nav class="flex flex-wrap items-center gap-2.5" aria-label="主要ナビゲーション">
+        <%= link_to "投稿", new_post_path, class: nav_link_class %>
         <% if current_user %>
-          <%= link_to "マイページ", my_page_path %>
-          <%= link_to "行きたい", want_to_go_posts_path %>
+          <%= link_to "マイページ", my_page_path, class: nav_link_class %>
+          <%= link_to "行きたい", want_to_go_posts_path, class: nav_link_class %>
           <% if Current.admin? %>
-            <%= link_to "管理", admin_posts_path %>
+            <%= link_to "管理", admin_posts_path, class: nav_link_class %>
           <% end %>
-          <%= button_to "ログアウト", session_path, method: :delete, class: "link-button" %>
+          <%= button_to "ログアウト", session_path, method: :delete, class: "#{nav_link_class} cursor-pointer border-0 bg-transparent p-0", form: { class: "contents" } %>
         <% else %>
-          <%= link_to "ログイン", new_session_path %>
+          <%= link_to "ログイン", new_session_path, class: nav_link_class %>
         <% end %>
       </nav>
     </header>
 
-    <main class="page-shell">
+    <main class="mx-auto w-full max-w-[1040px] px-4 pb-12 pt-5 md:px-8">
       <% if notice.present? %>
-        <p class="flash notice"><%= notice %></p>
+        <p class="rounded-lg bg-[#eaf4ee] px-3.5 py-3 text-yoka-green-dark"><%= notice %></p>
       <% end %>
       <% if alert.present? %>
-        <p class="flash alert"><%= alert %></p>
+        <p class="rounded-lg bg-[#fff0ec] px-3.5 py-3 text-[#7c2f20]"><%= alert %></p>
       <% end %>
 
       <%= yield %>

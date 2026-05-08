@@ -1,41 +1,41 @@
-<article class="detail">
+<article class="overflow-hidden rounded-lg bg-yoka-surface">
   <% if @post.images.attached? %>
-    <%= image_tag @post.images.first.variant(:large), alt: @post.title, class: "detail-photo" %>
+    <%= image_tag @post.images.first.variant(:large), alt: @post.title, class: "aspect-[4/3] w-full bg-[#e5dfd2] object-cover" %>
   <% end %>
 
-  <div class="detail-body">
-    <p class="eyebrow"><%= @post.area %></p>
-    <h1><%= @post.title %></h1>
+  <div class="p-[18px]">
+    <p class="mb-2 font-extrabold text-yoka-accent"><%= @post.area %></p>
+    <h1 class="text-[clamp(2rem,8vw,4rem)] font-extrabold leading-[1.08] text-yoka-green-dark"><%= @post.title %></h1>
     <% if @post.description.present? %>
-      <p class="lead"><%= @post.description %></p>
+      <p class="mt-3 text-[1.08rem]"><%= @post.description %></p>
     <% end %>
 
-    <dl class="meta-list">
-      <div>
-        <dt>住所または場所名</dt>
+    <dl class="my-5 grid gap-2.5 text-sm text-yoka-muted">
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">住所または場所名</dt>
         <dd><%= @post.address %></dd>
       </div>
-      <div>
-        <dt>おすすめ時間帯</dt>
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">おすすめ時間帯</dt>
         <dd><%= @post.recommended_time.presence || "指定なし" %></dd>
       </div>
-      <div>
-        <dt>投稿者</dt>
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">投稿者</dt>
         <dd><%= @post.user.name %></dd>
       </div>
-      <div>
-        <dt>投稿日</dt>
+      <div class="grid gap-0.5">
+        <dt class="font-extrabold text-yoka-green-dark">投稿日</dt>
         <dd><%= l @post.created_at.to_date %></dd>
       </div>
     </dl>
 
-    <div class="tag-row">
+    <div class="flex flex-wrap items-center gap-2">
       <% @post.tags.each do |tag| %>
-        <%= link_to "##{tag.name}", posts_path(tag: tag.slug), class: "tag" %>
+        <%= link_to "##{tag.name}", posts_path(tag: tag.slug), class: "inline-flex min-h-[34px] items-center rounded-full border border-yoka-line bg-yoka-surface px-3 py-1.5 text-sm font-bold text-yoka-green-dark" %>
       <% end %>
     </div>
 
-    <div class="action-row">
+    <div class="mt-5 flex flex-wrap items-center gap-2">
       <%= render "like_button", post: @post %>
       <%= render "want_to_go_button", post: @post %>
     </div>

@@ -10,3 +10,17 @@
   --color-yoka-green-dark: #24513c;
   --color-yoka-accent: #ba5e4a;
 }
+
+@layer components {
+  .primary-button {
+    @apply inline-flex min-h-[42px] cursor-pointer items-center justify-center rounded-lg border border-yoka-green bg-yoka-green px-3.5 py-2 font-extrabold text-white;
+  }
+
+  .secondary-button {
+    @apply inline-flex min-h-[42px] cursor-pointer items-center justify-center rounded-lg border border-yoka-green bg-white px-3.5 py-2 font-extrabold text-yoka-green-dark;
+  }
+
+  .danger {
+    @apply border-yoka-accent text-yoka-accent;
+  }
+}

@@ -48,6 +48,16 @@ class ApplicationBasicAuthTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  test "rejects access when enabled without configured credentials" do
+    ENV["BASIC_AUTH_ENABLED"] = "true"
+    ENV["BASIC_AUTH_USERNAME"] = nil
+    ENV["BASIC_AUTH_PASSWORD"] = nil
+
+    get posts_path, headers: basic_auth_headers(BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD)
+
+    assert_response :unauthorized
+  end
+
   test "does not require basic authentication for health check" do
     enable_basic_authentication
 

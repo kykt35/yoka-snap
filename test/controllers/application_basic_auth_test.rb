@@ -32,6 +32,14 @@ class ApplicationBasicAuthTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  test "requires basic authentication before application authentication" do
+    enable_basic_authentication
+
+    get new_post_path
+
+    assert_response :unauthorized
+  end
+
   test "allows access with valid basic authentication credentials" do
     enable_basic_authentication
 
